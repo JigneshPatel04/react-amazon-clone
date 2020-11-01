@@ -2,20 +2,30 @@ import React from 'react';
 import './Home.css';
 import Product from './Product';
 
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+
 function Home() {
   return (
     <div className='home'>
       <div className='home__container'>
-        {/* <img
-          className='home__image'
-          src='https://images-eu.ssl-images-amazon.com/images/G/31/img20/Events/jupiter20/GWphase2/v2/Phase2_Rec_PCHero_1X_1500x600._CB417375786_.jpg'
-         alt="" /> */}
-        <img
-          className='home__image'
-          src='https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg'
-          alt=''
-        />
-
+        {/* <AliceCarousel autoPlayInterval={2000} autoPlay={true} className='alice_width'> */}
+          {/* <img
+            className='home__image '
+            src='https://images-eu.ssl-images-amazon.com/images/G/31/img20/Events/jupiter20/GWphase2/v2/Phase2_Rec_PCHero_1X_1500x600._CB417375786_.jpg'
+            alt=''
+          /> */}
+          <img
+            className='home__image '
+            src='https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg'
+            alt=''
+          />
+          {/* <img
+            className='home__image sliderimg'
+            src='https://images-eu.ssl-images-amazon.com/images/G/31/img20/PC/Diwali/Phase3/Amazon_GRD_DesktopHero_Template_1500x600-revised._CB418294093_.jpg'
+            alt=''
+          /> */}
+        {/* </AliceCarousel> */}
         <div className='home__row'>
           <Product
             id='12321341'

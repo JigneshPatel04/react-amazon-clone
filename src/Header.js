@@ -9,13 +9,13 @@ import { useStateValue } from './StateProvider';
 import { auth } from './firebase';
 
 function Header() {
-  const [{ basket,user }, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
 
   const handleAuthentication = () => {
-    if(user){
+    if (user) {
       auth.signOut();
     }
-  }
+  };
 
   return (
     <div className='header'>
@@ -34,14 +34,21 @@ function Header() {
       <div className='header__nav'>
         <Link to='/login'>
           <div className='header__option' onClick={handleAuthentication}>
-            <span className='header__optionOne'>Hello {!user ? 'Guest' : user?.email}</span>
-            <span className='header__optionTwo'> {user ? 'Sign Out' : 'Sign In'} </span>
+            <span className='header__optionOne'>
+              Hello {!user ? 'Guest' : user?.email}
+            </span>
+            <span className='header__optionTwo'>
+              {' '}
+              {user ? 'Sign Out' : 'Sign In'}{' '}
+            </span>
           </div>
         </Link>
-        <div className='div header__option'>
-          <span className='header__optionOne'>Returns</span>
-          <span className='header__optionTwo'>& Orders</span>
-        </div>
+        <Link to='/orders'>
+          <div className='div header__option'>
+            <span className='header__optionOne'>Returns</span>
+            <span className='header__optionTwo'>& Orders</span>
+          </div>
+        </Link>
         <div className='div header__option'>
           <span className='header__optionOne'>Your</span>
           <span className='header__optionTwo'>Prime</span>

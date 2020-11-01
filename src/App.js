@@ -9,33 +9,49 @@ import { auth } from './firebase';
 import { useStateValue } from './StateProvider';
 import { useEffect } from 'react';
 import Payment from './Payment';
+import { Elements, CardElement } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import Orders from './Orders';
+
+const stripe = loadStripe('pk_test_8ZO3SxLVZRyRY5s7IPIejHmf0011OBMiEO');
 
 function App() {
   const [{}, dispatch] = useStateValue();
 
   useEffect(() => {
-    auth.onAuthStateChanged(authUser => {
+    let isMounted = true;
+
+    auth.onAuthStateChanged((authUser) => {
       console.log('The User is >>>', authUser);
-      if (authUser) {
+      if (authUser && isMounted) {
         // the user just logged in
         dispatch({
           type: 'SET_USER',
-          user:authUser
+          user: authUser,
         });
       } else {
+        isMounted = false;
         // the user logged out
         dispatch({
           type: 'SET_USER',
-          user:null
+          user: null,
         });
       }
     });
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
     <Router>
       <div className='App'>
         <Switch>
+          <Route path='/orders'>
+            <Header />
+            <Orders />
+          </Route>
+
           <Route path='/login'>
             <Login />
           </Route>
@@ -43,9 +59,12 @@ function App() {
             <Header />
             <Checkout />
           </Route>
+
           <Route path='/payment'>
             <Header />
-            <Payment />
+            <Elements stripe={stripe}>
+              <Payment />
+            </Elements>
           </Route>
           <Route path='/'>
             <Header />
